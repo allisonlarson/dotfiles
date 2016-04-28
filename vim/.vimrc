@@ -76,3 +76,4 @@ nmap <leader>h :bprevious<CR>                           " move to previous buffe
 nmap <leader>bq :bp <BAR> bd #<CR>                      " close buffer, move to previous
 nmap <leader>bl :ls<CR>                                 " show open buffers & their status
 
+map <leader>a :execute "Ag " . expand("<cword>") <CR>   " Expand current word & search dir
