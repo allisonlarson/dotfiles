@@ -77,3 +77,6 @@ nmap <leader>bq :bp <BAR> bd #<CR>                      " close buffer, move to 
 nmap <leader>bl :ls<CR>                                 " show open buffers & their status
 
 map <leader>a :execute "Ag " . expand("<cword>") <CR>   " Expand current word & search dir
+xnoremap <leader>s xi()<Esc>P                           " Surrounds selection with ()
+xnoremap <leader>b xi[]<Esc>P                           " Surrounds selection with []
+xnoremap <leader>c xi{}<Esc>P                           " Surrounds selection with {}
