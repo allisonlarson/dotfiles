@@ -46,7 +46,7 @@ set noswapfile                                      " no swap files
 set scrolloff=4                                     " adds top/bottom buffer between cursor and window
 set cursorline                                      " colours the line the cursor is on
 set number                                          " line numbers
-let mapleader = ";"
+let mapleader = "\<Space>"
 nmap <Leader>p orequire "pry"<CR>binding.pry<ESC>;  " pry insertion
 nmap <Leader>d odebugger<ESC>;                      " debugger insertion
 vnoremap . :norm.<CR>                               " in visual mode, "." will for each line, go into normal mode and execute the "."
