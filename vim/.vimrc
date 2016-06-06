@@ -59,6 +59,7 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .DS_Store
       \ --ignore "**/*.pyc"
       \ -g ""'
+let g:ctrlp_use_caching = 0
 
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
@@ -76,7 +77,10 @@ nmap <leader>h :bprevious<CR>                           " move to previous buffe
 nmap <leader>bq :bp <BAR> bd #<CR>                      " close buffer, move to previous
 nmap <leader>bl :ls<CR>                                 " show open buffers & their status
 
+" map \ to the :Ag command
+nnoremap \ :Ag<SPACE>
 map <leader>a :execute "Ag " . expand("<cword>") <CR>   " Expand current word & search dir
+
 xnoremap <leader>s xi()<Esc>P                           " Surrounds selection with ()
 xnoremap <leader>b xi[]<Esc>P                           " Surrounds selection with []
 xnoremap <leader>c xi{}<Esc>P                           " Surrounds selection with {}
