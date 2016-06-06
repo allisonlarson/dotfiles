@@ -80,3 +80,4 @@ map <leader>a :execute "Ag " . expand("<cword>") <CR>   " Expand current word & 
 xnoremap <leader>s xi()<Esc>P                           " Surrounds selection with ()
 xnoremap <leader>b xi[]<Esc>P                           " Surrounds selection with []
 xnoremap <leader>c xi{}<Esc>P                           " Surrounds selection with {}
+xnoremap <leader>q xi""<Esc>P                           " Surrounds selection with ""
