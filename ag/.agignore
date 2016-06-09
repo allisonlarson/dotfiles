@@ -1,0 +1,10 @@
+/tmp/
+/log/
+/logs/
+/public/assets/
+/node_modules/
+/vendor/
+*.map
+.git
+**.bundle.*
+**.bundle.map.*
