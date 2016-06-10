@@ -4,6 +4,7 @@ set rtp+=/usr/local/go/misc/vim
 
 colorscheme gruvbox
 set background=dark
+set term=screen-256color
 
 "" ==========  These come from Mislav (http://mislav.uniqpath.com/2011/12/vim-revisited/)  ==========
 set nocompatible                " choose no compatibility with legacy vi
