@@ -1,0 +1,14 @@
+# This is Git's per-user configuration file.
+[user]
+	user = Allie Larson
+	email = allisonlarson91@gmail.com
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+[push]
+  default = tracking
+[alias]
+	last = log -1 HEAD
+  wip = !git add . && git commit -m "wip"
+  yank = pull --rebase
+
