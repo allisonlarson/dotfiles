@@ -53,14 +53,16 @@ nmap <Leader>d odebugger<ESC>;                      " debugger insertion
 vnoremap . :norm.<CR>                               " in visual mode, "." will for each line, go into normal mode and execute the "."
 autocmd BufWritePre * :%s/\s\+$//e
 imap jk <Esc>
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
-let g:ctrlp_use_caching = 0
+"let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+"      \ --ignore .git
+"      \ --ignore .svn
+"      \ --ignore .hg
+"      \ --ignore .DS_Store
+"      \ --ignore "**/*.pyc"
+"      \ -g ""'
+"let g:ctrlp_use_caching = 0
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
