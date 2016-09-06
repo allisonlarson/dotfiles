@@ -9,6 +9,7 @@ export BUNDLER_EDITOR=vim
 export NVM_DIR="$HOME/.nvm"
 . "$(brew --prefix nvm)/nvm.sh"
 
+export EDITOR=vim
 # :q exit tmux windows
 alias :q='exit'
 
