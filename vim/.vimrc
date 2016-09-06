@@ -82,7 +82,8 @@ nmap <leader>bl :ls<CR>                                 " show open buffers & th
 
 " map \ to the :Ag command
 nnoremap \ :Ag<SPACE>
-map <leader>a :execute "Ag " . expand("<cword>") <CR>   " Expand current word & search dir
+" Expand current word & search dir
+map <leader>a :execute "Ag " . expand("<cword>") <CR>
 
 xnoremap <leader>s xi()<Esc>P                           " Surrounds selection with ()
 xnoremap <leader>b xi[]<Esc>P                           " Surrounds selection with []
