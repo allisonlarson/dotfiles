@@ -89,3 +89,7 @@ xnoremap <leader>s xi()<Esc>P                           " Surrounds selection wi
 xnoremap <leader>b xi[]<Esc>P                           " Surrounds selection with []
 xnoremap <leader>c xi{}<Esc>P                           " Surrounds selection with {}
 xnoremap <leader>q xi""<Esc>P                           " Surrounds selection with ""
+
+map <leader>o :NERDTreeToggle<CR>
+map <leader>f :NERDTreeFind<cr>
+
