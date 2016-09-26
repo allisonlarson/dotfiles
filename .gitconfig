@@ -11,4 +11,5 @@
 	last = log -1 HEAD
   wip = !git add . && git commit -m "wip"
   yank = pull --rebase
+  recent = !git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)'|column -ts'|'};
 
