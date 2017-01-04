@@ -34,8 +34,6 @@ DISABLE_AUTO_UPDATE="true"
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
 
-plugins=(git bundle rails)
-
 source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/local/sbin:$PATH"
