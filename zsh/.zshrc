@@ -6,8 +6,10 @@ export PATH="/usr/local/bin:$PATH:$HOME/.rvm/bin"
 
 # bundle open with vim
 export BUNDLER_EDITOR=vim
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
+if which nvm &> /dev/null; then
+  export NVM_DIR="$HOME/.nvm"
+  . "$(brew --prefix nvm)/nvm.sh"
+fi
 
 export EDITOR=vim
 # :q exit tmux windows
@@ -16,8 +18,10 @@ alias :q='exit'
 # bundle
 alias be="bundle exec"
 
-# alias hub to git
-eval "$(hub alias -s)"
+if which hub &> /dev/null; then
+  # alias hub to git
+  eval "$(hub alias -s)"
+fi
 
 ZSH_THEME="clean"
 
