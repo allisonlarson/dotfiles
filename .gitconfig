@@ -15,3 +15,5 @@
 [rebase]
   autosquash = true
 
+[color]
+	ui = true
