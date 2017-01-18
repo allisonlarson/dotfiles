@@ -25,6 +25,12 @@ fi
 
 ZSH_THEME="clean"
 
+if which xdg-open &> /dev/null; then
+  show-pdf() { xdg-open "$*" &; }
+  alias show=show-pdf
+fi
+
+
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
 
