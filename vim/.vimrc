@@ -44,7 +44,7 @@ set hlsearch                    " highlight matches
 set incsearch                   " incremental searching
 
 "" ========== NERDTree  ==========
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " close vim if NERDTree is the only open buffer
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " close vim if NERDTree is the only open buffer
 
 "" ==========  Mine  ==========
 set clipboard=unnamed
@@ -100,3 +100,39 @@ xnoremap <leader>q xi""<Esc>P                           " Surrounds selection wi
 map <leader>o :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<cr>
 
+"Finding files
+"
+set path+=**
+set wildmenu
+
+" Tag jump
+command! MakeTags !ctags -R .
+" - Use ^] to jump to tag under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
+
+" autocomplete
+" The good stuff is documented in |ins-completion|
+
+" - ^x^n for JUST this file
+" - ^x^f for filenames (works with our path trick!)
+" - ^x^] for tags only
+" - ^n for anything specified by the 'complete' option
+
+" - Use ^n and ^p to go back and forth in the suggestion list
+
+"" FILE BROWSING:
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" - :edit a folder to open a file browser
+" - <CR>/v/t to open in an h-split/v-split/tab
+" - check |netrw-browse-maps| for more mappings
+"
+"
