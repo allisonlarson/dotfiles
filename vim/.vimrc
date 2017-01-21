@@ -1,6 +1,10 @@
 execute pathogen#infect()
 
 set rtp+=/usr/local/go/misc/vim
+"" specify regex engine
+set re=1
+"" speed up scroll
+set ttyfast
 
 colorscheme gruvbox
 set background=dark
