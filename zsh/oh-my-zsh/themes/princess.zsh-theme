@@ -10,25 +10,20 @@
 
 typeset -A host_repr
 
-pink=
-
-# translate hostnames into shortened, colorcoded strings
-host_repr=('allie-s76' "%{$FX[bold]$FG[213]%}ws")
-
 # local time, color coded by last return code
-time_enabled="%(?.%{$fg[green]%}.%{$fg[red]%})%*%{$reset_color%}"
-time_disabled="%{$fg[green]%}%*%{$reset_color%}"
+time_enabled="%(?.%{$FG[082]%}.%{$fg[red]%})%*%{$reset_color%}"
+time_disabled="%{$FG[082]%}%*%{$reset_color%}"
 time=$time_enabled
 
 # user part, color coded by privileges
-local user="%(!.%{$fg[blue]%}.%{$fg_bold[magenta]%})%n%{$reset_color%}"
+local user="%(!.%{$FG[075]%}.%{$FG[165]%})%n%{$reset_color%}"
 
 # Hostname part.  compressed and colorcoded per host_repr array
 # if not found, regular hostname in default color
-local host="@${host_repr[$HOST]:-$HOST}%{$reset_color%}"
+local host="@%{$FX[bold]$FG[213]%}$HOST%{$reset_color%}"
 
 # Compacted $PWD
-local pwd="%{$fg[blue]%}%c%{$reset_color%}"
+local pwd="%{$FG[075]%}%c%{$reset_color%}"
 
 PROMPT='${time} ${user}${host} ${pwd} $(git_prompt_info)'
 
@@ -36,8 +31,8 @@ PROMPT='${time} ${user}${host} ${pwd} $(git_prompt_info)'
 # but lets see how this works out
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$FG[213]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%} %{$fg[red]%}?%{$fg[green]%}%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$FG[226]%} ★ %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$FG[082]%}"
 
 # elaborate exitcode on the right when >0
 return_code_enabled="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
