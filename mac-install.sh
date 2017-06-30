@@ -5,21 +5,21 @@ clear
 echo "Welcome to your installer"
 
 if ! which brew > /dev/null; then
-	echo "Now installing homebrew from https://raw.githubusercontent.com/Homebrew/install/master/install..."
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	echo "homebrew installed!"
+  echo "Now installing homebrew from https://raw.githubusercontent.com/Homebrew/install/master/install..."
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo "homebrew installed!"
 fi
 
 if ! which zsh > /dev/null; then
-	echo "Now installing zsh & zsh-completions"
-	brew install zsh zsh-completions
-	echo "ZSH installed!"
+  echo "Now installing zsh & zsh-completions"
+  brew install zsh zsh-completions
+  echo "ZSH installed!"
 fi
 
 if ! ls ~/.oh-my-zsh > /dev/null; then
-	echo "Now installing oh-my-zsh"
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	echo "oh-my-zsh installed!"
+  echo "Now installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  echo "oh-my-zsh installed!"
 fi
 
 echo "Now installing .zshrc and themes"
@@ -60,8 +60,8 @@ echo "ag installed"
 
 
 if ! which tmux > /dev/null; then
-echo "installing tmux"
-brew install tmux
+  echo "installing tmux"
+  brew install tmux
 fi
 echo "linking tmux configs"
 ln -s ./tmux/.tmux.conf ~/.tmux.conf
