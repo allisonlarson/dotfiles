@@ -24,30 +24,33 @@ fi
 
 echo "Now installing .zshrc and themes"
 echo "Moving princess theme into themes directory"
-cp ./zsh/oh-my-zsh/themes/princess.zsh-theme ~/.oh-my-zsh/themes/
+ln -s `pwd`/zsh/oh-my-zsh/themes/princess.zsh-theme ~/.oh-my-zsh/themes/
 echo "Symlinking zshrc"
-ln -sf ./zsh/.zshrc ~/.zshrc
+ln -sf `pwd`/zsh/.zshrc ~/.zshrc
 echo "Sourcing .zshrc"
 source ~/.zshrc
 echo "ZSHrc and themes installed!"
 
 echo "Moving on to vim install"
-echo "Installing pathogen"
-mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-echo "Pulling submodules.."
-git submodule update --init --recursive
-echo "Linking vim bundles"
-ln -sf ./vim/bundle ~/.vim/
+echo "Installing vundle"
+mkdir -p ~/.vim/bundle && \
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo "Installing vim plugins"
+vim +PluginInstall +qall
+echo "linking vim after/syntax files"
+mkdir -p ~/.vim/after/syntax
+ln -s `pwd`/vim/after/syntax/* ~/.vim/after/syntax/
+echo "linking vim princess airline theme"
+ln -s `pwd`/vim/vim-airline-themes/princess.vim ~/.vim/bundle/vim-airline-themes/autoload/airline/themes/
 echo "linking vimrc"
-ln -s ./vim/.vimrc ~/.vimrc
+ln -s `pwd`/vim/.vimrc ~/.vimrc
 echo "Vim installed!"
 
 echo "linking gitconfig"
-ln -s ./.gitconfig ~/.gitconfig
+ln -s `pwd`/.gitconfig ~/.gitconfig
 echo "gitconfig linked"
 echo "linking gitignore"
-ln -s ./.gitignore ~/.gitignore
+ln -s `pwd`/.gitignore ~/.gitignore
 echo "gitignore linked"
 
 if ! which ag > /dev/null; then
@@ -55,7 +58,7 @@ if ! which ag > /dev/null; then
   brew install the_silver_searcher
 fi
 echo "linking .agignore"
-ln -s ./ag/.agignore ~/.agignore
+ln -s `pwd`/ag/.agignore ~/.agignore
 echo "ag installed"
 
 
@@ -63,8 +66,9 @@ if ! which tmux > /dev/null; then
   echo "installing tmux"
   brew install tmux
 fi
+
 echo "linking tmux configs"
-ln -s ./tmux/.tmux.conf ~/.tmux.conf
+ln -s `pwd`/tmux/.tmux.conf ~/.tmux.conf
 echo "tmux installed"
 
 echo "This has been fun! Later!"

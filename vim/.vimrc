@@ -1,21 +1,52 @@
-execute pathogen#infect()
+set nocompatible                " choose no compatibility with legacy vi
+
+" lets get ready to vundle
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'rking/ag.vim'
+Plugin 'archseer/colibri.vim'
+Plugin 'allisonlarson/todo-vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-bundler'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'rust-lang/rust.vim'
+Plugin 'tpope/vim-endwise'
+Plugin 'fatih/vim-go'
+call vundle#end()
+
+" done vundling, load file type plugins + indentation
+filetype plugin indent on
 
 set rtp+=/usr/local/go/misc/vim
+
 "" specify regex engine
 set re=1
 "" speed up scroll
 set ttyfast
 
-colorscheme gruvbox
-set background=dark
-set term=screen-256color
+" tmux terminal true colors
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8b=[48;2;%lu;%lu;%lum
+set termguicolors
 
-"" ==========  These come from Mislav (http://mislav.uniqpath.com/2011/12/vim-revisited/)  ==========
-set nocompatible                " choose no compatibility with legacy vi
+set background=dark
+colorscheme colibri
+let g:airline_theme='princess'
+" Fix paren/bracket highlighting
+hi MatchParen ctermbg=bg guibg=bg ctermfg=215 guifg=#EFBA5D
+
 syntax enable
 set encoding=utf-8
-set showcmd                     " display incomplete commands
-filetype plugin indent on       " load file type plugins + indentation
+
+" display incomplete commands
+set showcmd
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -30,9 +61,6 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
-" Syntax Highlighting
-let g:jsx_ext_required = 0
-
 "" Whitespace
 set nowrap                      " don't wrap lines
 set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
@@ -43,33 +71,28 @@ set backspace=indent,eol,start  " backspace through everything in insert mode
 set hlsearch                    " highlight matches
 set incsearch                   " incremental searching
 
-"" ========== NERDTree  ==========
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " close vim if NERDTree is the only open buffer
 
-"" ==========  Mine  ==========
-set clipboard=unnamed
+if $TMUX == ''
+  set clipboard+=unnamed
+endif
 set nobackup                                        " no backup files
 set nowritebackup                                   " only in case you don't want a backup file while editing
 set noswapfile                                      " no swap files
 set scrolloff=4                                     " adds top/bottom buffer between cursor and window
 set cursorline                                      " colours the line the cursor is on
 set number                                          " line numbers
+
 let mapleader = "\<Space>"
-nmap <Leader>p orequire "byebug"; byebug<ESC>;  " pry insertion
-nmap <Leader>d odebugger<ESC>;                      " debugger insertion
-vnoremap . :norm.<CR>                               " in visual mode, "." will for each line, go into normal mode and execute the "."
-autocmd BufWritePre * :%s/\s\+$//e
 imap jk <Esc>
-"let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-"      \ --ignore .git
-"      \ --ignore .svn
-"      \ --ignore .hg
-"      \ --ignore .DS_Store
-"      \ --ignore "**/*.pyc"
-"      \ -g ""'
-"let g:ctrlp_use_caching = 0
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+" pry insertion
+nmap <Leader>p orequire "pry-byebug"; binding.pry<ESC>;
+" debugger insertion
+nmap <Leader>d odebugger<ESC>;
+" in visual mode, "." will for each line, go into normal mode and execute the "."
+vnoremap . :norm.<CR>
+
+autocmd BufWritePre * :%s/\s\+$//e
 
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j
@@ -81,58 +104,33 @@ nnoremap <c-l> <c-w>l
 let g:airline#extensions#tabline#enabled = 1            " Enable list of buffers
 let g:airline#extensions#tabline#fnamemod = ':t'        " Show just the filename
 set hidden                                              " hides modified buffers
-nmap <leader>T :enew<cr>                                " open new empty buffer
-nmap <leader>l :bnext<CR>                               " move to next buffer
-nmap <leader>h :bprevious<CR>                           " move to previous buffer
-nmap <leader>bq :bp <BAR> bd #<CR>                      " close buffer, move to previous
-nmap <leader>bl :ls<CR>                                 " show open buffers & their status
+" open new empty buffer
+nmap <leader>T :enew<cr>
+" move to next buffer
+nmap <leader>l :bnext<CR>
+" move to previous buffer
+nmap <leader>h :bprevious<CR>
+" close buffer, move to previous
+nmap <leader>bq :bp <BAR> bd #<CR>
+" show open buffers & their status
+nmap <leader>bl :ls<CR>
 
 " map \ to the :Ag command
 nnoremap \ :Ag<SPACE>
 " Expand current word & search dir
 map <leader>a :execute "Ag " . expand("<cword>") <CR>
-
-xnoremap <leader>s xi()<Esc>P                           " Surrounds selection with ()
-xnoremap <leader>b xi[]<Esc>P                           " Surrounds selection with []
-xnoremap <leader>c xi{}<Esc>P                           " Surrounds selection with {}
-xnoremap <leader>q xi""<Esc>P                           " Surrounds selection with ""
+" Surrounds selection with ()
+xnoremap <leader>s xi()<Esc>P
+" Surrounds selection with []
+xnoremap <leader>b xi[]<Esc>P
+" Surrounds selection with {}
+xnoremap <leader>c xi{}<Esc>P
+" Surrounds selection with
+xnoremap <leader>q xi""<Esc>P
 
 map <leader>o :NERDTreeToggle<CR>
 map <leader>f :NERDTreeFind<cr>
 
 "Finding files
-"
 set path+=**
 set wildmenu
-
-" Tag jump
-command! MakeTags !ctags -R .
-" - Use ^] to jump to tag under cursor
-" - Use g^] for ambiguous tags
-" - Use ^t to jump back up the tag stack
-
-" autocomplete
-" The good stuff is documented in |ins-completion|
-
-" - ^x^n for JUST this file
-" - ^x^f for filenames (works with our path trick!)
-" - ^x^] for tags only
-" - ^n for anything specified by the 'complete' option
-
-" - Use ^n and ^p to go back and forth in the suggestion list
-
-"" FILE BROWSING:
-
-" Tweaks for browsing
-let g:netrw_banner=0        " disable annoying banner
-let g:netrw_browse_split=4  " open in prior window
-let g:netrw_altv=1          " open splits to the right
-let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
-
-" - :edit a folder to open a file browser
-" - <CR>/v/t to open in an h-split/v-split/tab
-" - check |netrw-browse-maps| for more mappings
-"
-"

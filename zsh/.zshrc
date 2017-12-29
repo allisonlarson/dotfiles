@@ -6,10 +6,6 @@ export PATH="/usr/local/bin:$PATH:$HOME/.rvm/bin"
 
 # bundle open with vim
 export BUNDLER_EDITOR=vim
-if which nvm &> /dev/null; then
-  export NVM_DIR="$HOME/.nvm"
-  . "$(brew --prefix nvm)/nvm.sh"
-fi
 
 export EDITOR=vim
 # :q exit tmux windows
